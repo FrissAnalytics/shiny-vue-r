@@ -1,4 +1,4 @@
-# shiny-vue-r
+# shiny-movie-vue-r
 
 
 shiny vue hybrid app using an HTMLTemplate and vue.
@@ -29,3 +29,5 @@ We also pull data via an API from [The Movie DataBase](https://www.themoviedb.or
 The example app shows a ggplot2 graph, an image which url is send via R, an i18n 'hello world' example, a c3 (billboard) based bar chart and a data table with fixed headers.
 
 All data is send via R.
+
+![image info](./screenshot.png)
