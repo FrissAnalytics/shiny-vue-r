@@ -1,7 +1,7 @@
-library(tidyverse)
 library(shiny)
 library(httr)
 library(jsonlite)
+library(tidyverse)
 
 load("data/imdb_movies.RData")
 
@@ -20,5 +20,3 @@ top10     <- df_movies  %>% count(production_company) %>% top_n(10)
 df_bars   <- data.frame( movies_per_year = df_movies$year %>% table %>% as.vector)
 
 c3_data   <- list( type = "bar", json = df_bars, colors = list(movies_per_year = "#304FFE"))
-
-

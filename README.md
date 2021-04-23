@@ -26,7 +26,14 @@ A small toy dataframe is based on the [Kaggle IMDB movies extensive dataset](htt
 
 We also pull data via an API from [The Movie DataBase](https://www.themoviedb.org/) using the `httr` package. 
 
-The example app shows a ggplot2 graph, an image which url is send via R, an i18n 'hello world' example, a c3 (billboard) based bar chart and a data table with fixed headers.
+The example app shows:
+
+1. a ggplot2 graph
+2. v-autocomplete movie search box example
+3. an image which url is send via R
+4. an i18n 'hello world' example
+5. a c3 (billboard.js) bar chart
+6. data table with fixed headers.
 
 All data is send via R.
 

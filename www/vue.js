@@ -6,10 +6,15 @@ $(document).on("shiny:connected", function (event) {
         state: {
             count: 10,
             c3: {},
-            movies: []
+            movies: [],
+            suggestions: []
         },
 
         mutations: {
+
+            setSuggestions(state, value) {
+                state.suggestions = value;
+            },
 
             setMovies(state, value) {
                 state.movies = value;

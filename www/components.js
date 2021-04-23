@@ -2,46 +2,94 @@ $(document).on("shiny:connected", function (event) {
 
   // create components based on the options API 
   // note: vuetify 2 is not compatible with vue 3 yet so we don't use the composition API
-  Vue.component("vr-wrapper", {
+
+  Vue.component("vr-search-box", {
 
     data() {
       return {
-        name: "test",
-        show: false,
-        payload: null
-      }
-    },
-
-    mounted() {
-      this.$bus.on("r2vue", this.update);
-    },
-
-    methods: {
-      update(payload) {
-        this.payload = payload;
+        search: null,
+        items: [],
+        model: null
       }
     },
 
     computed: {
-      count() {
-        return this.$store.state.count
-      },
+      suggestions() {
+        return this.$store.state.suggestions;
+      }
+    },
 
-      backdrop() {
-        return this.payload ? 'https://image.tmdb.org/t/p/w1280/' + this.payload.backdrop_path : '';
+    methods: {
+
+      getSuggestions: _.debounce((val) => {
+        Shiny.setInputValue('search', { field: "movies", value: val })
+      }, 500)
+
+    },
+
+    watch: {
+      search(val) {
+        this.getSuggestions(val);
       }
     },
 
     template: `
       <div class="ma-2">
 
+        <v-autocomplete
+            v-model="model"
+            :items="suggestions"
+            :search-input.sync="search"
+            label="search"
+            placeholder="Start typing to search"
+            prepend-icon="mdi-database-search"
+            clearable>
+        </v-autocomplete>
+
+      </div>`
+  });
+
+});
+
+Vue.component("vr-wrapper", {
+
+  data() {
+    return {
+      name: "test",
+      show: false,
+      payload: null,
+    }
+  },
+
+  mounted() {
+    this.$bus.on("r2vue", this.update);
+  },
+
+  methods: {
+    update(payload) {
+      this.payload = payload;
+    }
+  },
+
+  computed: {
+    count() {
+      return this.$store.state.count;
+    },
+
+    backdrop() {
+      return this.payload ? 'https://image.tmdb.org/t/p/w1280/' + this.payload.backdrop_path : '';
+    }
+
+  },
+
+  template: `
+      <div class="ma-2">
+
+        <vr-search-box class="mx-auto" style="width: 600px"/>
+ 
         <img :src="backdrop" />
 
         <div class="my-5 text-center">{{ $i18n.t("message.hello") }}</div>
-
-        <div class="my-5">count: {{count}}</div>
-
-        <div class="my-5" v-if="payload">{{payload}}</div>
 
         <v-btn x-small @click="show=!show">open</v-btn>
 
@@ -68,8 +116,6 @@ $(document).on("shiny:connected", function (event) {
             </v-sheet>
           </v-bottom-sheet>
       </div>`
-  });
-
 });
 
 Vue.component("c3-bar-chart", {

@@ -13,8 +13,17 @@ function(input, output, session) {
    ggplot(df_movies %>% filter(production_company %in% top10$production_company) %>% sample_frac( runif(1)), aes(production_company)) + geom_bar()
  })
  
- observeEvent(input$vue, {
-   cat("\nupdate:", input$vue)
+
+ # movie search service
+ observeEvent(input$search, {
+    
+    req(input$search$value)
+    
+    m      <- grep(paste0("^",input$search$value), imdb_movies$original_title, ignore.case = TRUE)
+    
+    result <- imdb_movies[m, ] %>% arrange( desc(avg_vote) )
+    
+    rVuex("setSuggestions", head(result$original_title,200))
  })
  
 }
