@@ -1,6 +1,7 @@
 library(tidyverse)
 library(shiny)
 library(httr)
+library(jsonlite)
 
 load("data/imdb_movies.RData")
 
