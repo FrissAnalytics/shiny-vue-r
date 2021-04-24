@@ -177,7 +177,6 @@ Vue.component("vr-table", {
 
   computed: {
     movies() {
-      console.log("movies", this.$store.state.movies)
       return this.$store.state.movies;
     },
 
