@@ -54,17 +54,11 @@ All data is send via R.
 - jsonlite
 - tidyverse
 - TMDb
-
-Please make sure these packages are installed. 
-
 ##### Data
 
 A small toy dataframe is based on the [Kaggle IMDB movies extensive dataset](https://www.kaggle.com/stefanoleone992/imdb-extensive-dataset). This will be used to do in memory computation via `tidyverse` and `igraph`. 
 
-We also pull data via an API from [The Movie DataBase](https://www.themoviedb.org/) using the `httr` package (to show beginner how to make GET requests) and using the `TMDb` RData package. 
-
-Soon we also pull in Covid data from John Hopkins and use pre-processed data 
-(to answer the question - Can you go to the movies?)
+We also pull data via an API from [The Movie DataBase](https://www.themoviedb.org/) using the `httr` package and using the `TMDb` RData package. See `data/tmdb_schema.json` for request url details.
 
 ##### Ideas
 

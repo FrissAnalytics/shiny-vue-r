@@ -8,12 +8,13 @@ function(input, output, session) {
  
  rVuex("setC3", c3_data)
  
+ rVuex("setPopularMovies", popular_movies %>% toJSON)
+ 
  output$plot1 <- renderPlot({
    input$vue
    ggplot(df_movies %>% filter(production_company %in% top10$production_company) %>% sample_frac( runif(1)), aes(production_company)) + geom_bar()
  })
  
-
  # movie search service
  observeEvent(input$search, {
     
