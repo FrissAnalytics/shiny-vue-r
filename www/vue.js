@@ -7,10 +7,15 @@ $(document).on("shiny:connected", function (event) {
             count: 10,
             c3: {},
             movies: [],
+            popularMovies: [],
             suggestions: []
         },
 
         mutations: {
+
+            setPopularMovies(state, value) {
+                state.popularMovies = value;
+            },
 
             setSuggestions(state, value) {
                 state.suggestions = value;
