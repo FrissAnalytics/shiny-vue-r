@@ -20,7 +20,15 @@ genres               <- imdb_movies$genre %>% unique %>% sort
 production_companies <- imdb_movies$production_company %>% unique %>% sort
 
 # clean up genres
-genres <- str_split(genres, " ") %>% unlist %>% tolower %>% gsub(",", "", .) %>% unique %>% sort
+genres <- str_split(imdb_movies$genre, " ") %>% unlist %>% tolower %>% gsub(", ", "", .)
+
+
+tt <- table(genres,useNA = "no")
+tt <- tt[order(tt,decreasing = TRUE)]
+
+countries <- str_split(imdb_movies$country, ", ") %>% unlist %>% tolower %>% gsub(", ", "", .)
+
+count(data.frame(countries), countries, sort = TRUE)
 
 # topics
 data("stop_words")

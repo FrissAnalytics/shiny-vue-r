@@ -1,16 +1,14 @@
+/* custom scrollbar */
 :root {
   --scrollbar-bg:  rgb(241, 241, 241);
   --scrollbar-thumb: rgba(168, 168, 168, 0.9);
 }
 
-
-/* Works on Firefox */
 * {
   scrollbar-width: thin;
   scrollbar-color: var(--scrollbar-thumb) var(--scrollbar-bg);
 }
 
-/* Works on Chrome, Edge, and Safari */
 *::-webkit-scrollbar {
   width: 10px;
 }
@@ -24,4 +22,12 @@
   background-color: var(--scrollbar-thumb);
   border-radius: 8px;
   border: 2px solid var(--scrollbar-bg);
+}
+
+.app-title{
+  font-family: "Open Sans", Helvetica, Arial, sans-serif;
+  letter-spacing: 0.71429rem;
+  font-weight: 700 !important;
+  font-size: 4rem !important;
+  color: white;
 }

@@ -5,78 +5,45 @@
 <head>
   {{ headContent() }}
 
-  <!-- material design font -->
   <link href="https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700,900" rel="stylesheet">
-
-  <!-- material design icons -->
   <link href="https://cdn.jsdelivr.net/npm/@mdi/font@4.x/css/materialdesignicons.min.css" rel="stylesheet">
-
-  <!-- vuetify css -->
   <link href="https://cdn.jsdelivr.net/npm/vuetify@2.x/dist/vuetify.min.css" rel="stylesheet">
-
-  <!-- lodash - easy array and object manipulation -->
-  <script src="https://cdn.jsdelivr.net/npm/lodash@4.13.1/lodash.min.js"></script>
-
-  <!-- d3 -->
-  <script src="https://d3js.org/d3.v6.min.js"></script>
-
-  <!-- billboard js -->
-  <script src="https://cdn.jsdelivr.net/npm/billboard.js/dist/billboard.min.js"></script>
-
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/billboard.js/dist/billboard.min.css">
+  <link href="styles.css" rel="stylesheet">
 
-  <!-- event emitter -->
   <script src="https://unpkg.com/mitt/dist/mitt.umd.js"></script>
-
-  <!-- vue-->
   <script src="https://cdn.jsdelivr.net/npm/vue@2.x/dist/vue.js"></script>
-
-  <!-- vuex -->
   <script src="https://unpkg.com/vuex@3.6.2/dist/vuex.js"></script>
-
-  <!-- vuetify -->
+  <script src="https://unpkg.com/vue-router/dist/vue-router.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/vuetify@2.x/dist/vuetify.js"></script>
-
-  <!-- i18n -->
+  <script src="https://cdn.jsdelivr.net/npm/lodash@4.13.1/lodash.min.js"></script>
+  <script src="https://d3js.org/d3.v6.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/billboard.js/dist/billboard.min.js"></script>
   <script src="https://unpkg.com/vue-i18n@8"></script>
-
-  <!-- custom components definitions -->
   <script src="components.js"></script>
-
-  <!-- initialize vue -->
-  <script src="vue.js"></script>
-
-  <link rel="stylesheet" type="text/css" href="styles.css">
+  <script type="module" src="vue.js"></script>
 
 </head>
 
 <body>
 
-  <div id="plot1" class="shiny-plot-output" style="width: 100% ; height: 200px; margin-top: 70px;"></div>
-
   <div id="app" ref="app">
 
     <v-app>
 
-      <v-app-bar app dense>
+      <v-main>
 
-        <v-app-bar-nav-icon></v-app-bar-nav-icon>
+        <v-container fluid class="pa-0">
 
-        <v-toolbar-title>shiny-movie-vue-r</v-toolbar-title>
+          <v-fade-transition mode="out-in">
 
-        <v-spacer></v-spacer>
+            <router-view></router-view>
 
-        <span class="mx-2">v0.2</span>
+          </v-fade-transition>
 
-      </v-app-bar>
+        </v-container>
 
-      <div class="text-center" style="margin-top:64px;">
-
-        <v-btn x-small @click="test">shiny</v-btn>
-
-        <vr-wrapper />
-
-      </div>
+      </v-main>
 
     </v-app>
 

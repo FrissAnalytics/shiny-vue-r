@@ -1,60 +1,9 @@
+import router from "/router.js"
+import store from "/store.js"
+import bus from "/bus.js"
+import i18n from "/i18n.js"
+
 $(document).on("shiny:connected", function (event) {
-
-    // vuex store
-    const store = new Vuex.Store({
-
-        state: {
-            count: 10,
-            c3: {},
-            movies: [],
-            popularMovies: [],
-            suggestions: []
-        },
-
-        mutations: {
-
-            setPopularMovies(state, value) {
-                state.popularMovies = value;
-            },
-
-            setSuggestions(state, value) {
-                state.suggestions = value;
-            },
-
-            setMovies(state, value) {
-                state.movies = value;
-            },
-
-            setC3(state, value) {
-                state.c3 = value;
-            }
-        }
-    })
-
-    // event bus
-    const bus = mitt();
-
-    // make bus available in vue instances
-    Vue.prototype.$bus = bus;
-
-    const messages = {
-        en: {
-            message: {
-                hello: 'hello world'
-            }
-        },
-        ja: {
-            message: {
-                hello: 'こんにちは、世界'
-            }
-        }
-    }
-
-    // create vueI18n instance with options
-    const i18n = new VueI18n({
-        locale: 'ja', // set locale
-        messages, // set locale messages
-    })
 
     const app = new Vue({
 
@@ -64,16 +13,11 @@ $(document).on("shiny:connected", function (event) {
 
         store: store,
 
-        i18n: i18n,
+        router: router,
 
-        methods: {
-            test() {
-                Shiny.setInputValue('vue', Math.random())
-            }
-        }
+        i18n: i18n
     });
 
-    // events from R to javascript
     const rBus = function (message) {
         bus.emit("r2vue", message);
     }
