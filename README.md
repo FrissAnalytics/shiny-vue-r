@@ -1,18 +1,20 @@
 # Shiny-movie-Vue-r
 
+![image info](./screenshot.png)
 ##### What is it?
 
-Shiny / Vue hybrid app using an HTMLTemplate. The app uses:
+Shiny / Vue hybrid app using an HTMLTemplate using native imports to load vue components. The app uses:
 
-1. [Vue](https://vuejs.org/)
+1. [vue](https://vuejs.org/)
 2. [vuetify](https://vuetifyjs.com/en/getting-started/installation/)
 3. [material design icons](https://materialdesignicons.com/)
 4. [vuex](https://vuex.vuejs.org/guide/)
-5. [Vue-i18n](https://kazupon.github.io/vue-i18n/) 
-6. [billboard.js](https://naver.github.io/billboard.js/)
-7. [lodash.js](https://lodash.com/)
-8. [d3.js](https://d3js.org/)
-9. [mitt.js](https://github.com/developit/mitt)
+5. [vue-router](https://router.vuejs.org/)
+6. [vue-i18n](https://kazupon.github.io/vue-i18n/) 
+7. [billboard.js](https://naver.github.io/billboard.js/)
+8. [lodash.js](https://lodash.com/)
+9. [d3.js](https://d3js.org/)
+10. [mitt.js](https://github.com/developit/mitt)
 
 ##### Why create this?
 
@@ -83,7 +85,3 @@ We also pull data via an API from [The Movie DataBase](https://www.themoviedb.or
 - Add covid tracking data from Hopkins. To answer: "Can you go to the movies?".
 
 - Add government response and vaccination data
-
-##### Example 
-
-![image info](./screenshot.png)

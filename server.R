@@ -1,16 +1,17 @@
 function(input, output, session) {
   
  source("r2Vue.R" , local = TRUE)
+  
+  output$plot1 <- renderPlot({
+    
+    input$vue
+    
+    # sample movies, show bar chart top 5 production companies 
+    df <- imdb_movies %>% sample_frac(0.1) %>% filter(production_company %in% top5$production_company)
 
- # rBus(movie)
- # 
- # rVuex("setMovies", df_movies %>% toJSON)
- # 
- # rVuex("setC3", c3_data)
- # 
- # rVuex("setPopularMovies", popular_movies %>% toJSON)
- # 
- # # movie search service
+    ggplot(df, aes(production_company)) + geom_bar()
+  })  
+  
  observeEvent(input$search, {
 
     req(input$search$value)
@@ -23,4 +24,3 @@ function(input, output, session) {
  })
 
 }
-
