@@ -11,6 +11,8 @@ export default Vue.component("Home", {
         return {
             imgIndex: 0,
 
+            dialog: Math.random(),
+
             imgSrc: [
                 "https://www.themoviedb.org/t/p/original/2UrGpntyQtgunf039MErok78ZOK.jpg",
                 "https://www.themoviedb.org/t/p/original/r8z2HRNFag56tGvaXBxEg6EgwoY.jpg",
@@ -56,16 +58,32 @@ export default Vue.component("Home", {
         updateIndex() {
             this.imgIndex = this.imgIndex < this.imgSrc.length - 1 ? this.imgIndex + 1 : 0;
 
-            Shiny.setInputValue('vue', Math.random());
+            this.dialog = Math.random();
+        }
+    },
+
+    watch: {
+        dialog(val) {
+
+            if (val) {
+                Vue.nextTick(() => {
+
+                    if (!Shiny.shinyapp.$bindings.hasOwnProperty('plot1')) {
+                        Shiny.bindAll($('#shiny-test'));
+                    }
+                });
+            }
+
+            Shiny.setInputValue('vue', val);
         }
     },
 
     template: `
     <div class="d-flex align-center justify-center" :style="styleWrapper">
 
-        <v-container style="z-index: 1">
-
-          <!-- <div id="plot1" class="shiny-plot-output" style="width: 100% ; height: 200px; margin-top: 70px;"></div> -->
+        <v-container style="z-index: 1" id="shiny-test">
+ 
+          <div id="plot1" class="shiny-plot-output" style="width: 100% ; height: 200px; margin-top: 70px;"></div>
 
           <div class="text-center text-uppercase white--text" style="letter-spacing: 0.7rem; font-size: 1rem; font-weight: 400">Shiny 
             <v-btn icon color="blue" @click="updateIndex">

@@ -7,6 +7,7 @@ export default new Vuex.Store({
     mutations: {
 
         setSuggestions(state, value) {
+            console.log(value)
             state.suggestions = value;
         }
     }

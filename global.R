@@ -2,6 +2,8 @@ library(shiny)
 library(jsonlite)
 library(tidyverse)
 library(magrittr)
+library(shadowtext)
+library(plotly)
 
 load("data/imdb_movies.RData")
 
