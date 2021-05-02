@@ -1,7 +1,10 @@
 <template>
   <div class="poster-grid d-flex flex-wrap">
     <div v-for="(movie, index) in popular" :key="movie.id">
-      <div class="ma-1 pa-1 poster d-flex justify-center align-center">
+      <div
+        class="ma-1 pa-1 poster d-flex justify-center align-center"
+        @click="showMovieDetails(movie)"
+      >
         <img loading="lazy" :src="getPosterUrl(movie)" />
         <div class="poster-index">{{ index + 1 }}</div>
       </div>
@@ -25,13 +28,23 @@ module.exports = {
         "https://image.tmdb.org/t/p/w94_and_h141_bestv2" + movie.poster_path
       );
     },
+
+    showMovieDetails(movie) {
+      this.$store.commit("setMovie", movie);
+      this.$router.push("/movie-detail");
+    },
   },
 };
 </script>
 
 <style scoped>
 .poster-grid {
-  max-height: 400px;
+  --row-count: 2;
+  --poster-height: 141px;
+  --poster-padding: 16px;
+  height: calc(
+    var(--row-count) * (var(--poster-height) + var(--poster-padding))
+  );
   overflow-y: scroll;
 }
 

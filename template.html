@@ -54,11 +54,17 @@
 
     <v-app>
 
+      <div class="top-nav-wrapper">
+        <top-nav />
+      </div>
+
       <v-main>
 
-        <v-container fluid class="pa-0">
+        <v-container fluid class="pa-0 blue">
 
-          <router-view></router-view>
+          <keep-alive>
+            <router-view></router-view>
+          </keep-alive>
 
         </v-container>
 

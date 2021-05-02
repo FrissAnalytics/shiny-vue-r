@@ -1,0 +1,64 @@
+<template>
+  <v-card flat tile color="black" class="card">
+    <div class="text-center">
+      <p class="text-h2 font-weight-black">
+        {{ movie.original_title }}
+      </p>
+
+      <p class="text-body-2">
+        {{ movie.release_date }}
+      </p>
+
+      <div class="d-flex justify-center">
+        <div>
+          <img :src="backdrop" alt="backdrop" class="backdrop" />
+        </div>
+        <div class="ml-2">
+          <img :src="poster" alt="" />
+        </div>
+      </div>
+
+      <div style="width: 60%" class="mx-auto">
+        <p class="text-body-2">
+          {{ movie.overview }}
+        </p>
+      </div>
+    </div>
+  </v-card>
+</template>
+
+<script>
+module.exports = {
+  name: "movie-detail",
+
+  computed: {
+    movie() {
+      return this.$store.state.movie;
+    },
+
+    backdrop() {
+      return (
+        "https://www.themoviedb.org/t/p/original" + this.movie.backdrop_path
+      );
+    },
+
+    poster() {
+      return (
+        "https://www.themoviedb.org/t/p/w300_and_h450_bestv2/" +
+        this.movie.poster_path
+      );
+    },
+  },
+};
+</script>
+
+<style scoped>
+.card {
+  margin-top: 48px;
+  height: calc(100vh - 48px);
+}
+
+.backdrop {
+  height: 450px;
+}
+</style>

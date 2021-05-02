@@ -4,6 +4,7 @@ export default new Vuex.Store({
         count: 10,
         suggestions: [],
         popular: [],
+        movie: null
     },
 
     mutations: {
@@ -16,8 +17,8 @@ export default new Vuex.Store({
             state.suggestions = value;
         },
 
-        setShiny() {
-            Shiny.setInputValue('vue', Math.random());
+        setMovie(state, value) {
+            state.movie = value;
         }
     }
 })

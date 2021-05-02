@@ -1,20 +1,22 @@
 <template>
-  <v-autocomplete
-    v-model="model"
-    dark
-    :items="suggestions"
-    :search-input.sync="search"
-    item-text="original_title"
-    item-value="original_title"
-    label="search"
-    placeholder="Start typing to search"
-    prepend-icon="mdi-database-search"
-    clearable
-  >
-    <template v-slot:item="{ item }">
-      <search-box-item :item="item" />
-    </template>
-  </v-autocomplete>
+  <div style="width: 600px" class="mx-auto">
+    <v-autocomplete
+      v-model="model"
+      dark
+      :items="suggestions"
+      :search-input.sync="search"
+      item-text="original_title"
+      item-value="original_title"
+      label="search"
+      placeholder="Start typing to search"
+      prepend-icon="mdi-database-search"
+      clearable
+    >
+      <template v-slot:item="{ item }">
+        <search-box-item :item="item" />
+      </template>
+    </v-autocomplete>
+  </div>
 </template>
 
 <script>

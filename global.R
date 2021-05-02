@@ -9,8 +9,6 @@ library(curl)
 
 load("data/imdb_movies.RData")
 
-top5    <- imdb_movies  %>% count(production_company) %>% top_n(5)
-
 api_key <- "1832c46bf5ad73f96183eaddb5f8ab88"
 
 popular_urls <- function(n){
@@ -18,6 +16,9 @@ popular_urls <- function(n){
     paste0("http://api.themoviedb.org/3/movie/popular?api_key=1832c46bf5ad73f96183eaddb5f8ab88&page=",k,"&language=en")
   })
 }
+
+top5    <- imdb_movies %>% drop_na(production_company) %>% count(production_company) %>% top_n(5)
+top3    <- imdb_movies %>% drop_na(production_company) %>% count(production_company) %>% top_n(3)
 
 urls <- popular_urls(15)
 

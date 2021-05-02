@@ -9,13 +9,21 @@ $(document).on("shiny:connected", function (event) {
 
         el: "#app",
 
-        vuetify: new Vuetify(),
+        vuetify: new Vuetify({
+            theme: {
+                dark: true
+            }
+        }),
 
         store: store,
 
         router: router,
 
-        i18n: i18n
+        i18n: i18n,
+
+        components: {
+            "top-nav": httpVueLoader("components/TopNav.vue"),
+        },
     });
 
     const rBus = function (message) {

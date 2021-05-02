@@ -1,7 +1,7 @@
 /* custom scrollbar */
 :root {
-  --scrollbar-bg:  rgb(241, 241, 241);
-  --scrollbar-thumb: rgba(168, 168, 168, 0.9);
+  --scrollbar-bg:  #000000;
+  --scrollbar-thumb: #4c00ff;
 }
 
 * {
@@ -24,10 +24,16 @@
   border: 2px solid var(--scrollbar-bg);
 }
 
-.app-title{
-  font-family: "Open Sans", Helvetica, Arial, sans-serif;
-  letter-spacing: 0.71429rem;
-  font-weight: 700 !important;
-  font-size: 4rem !important;
+body {
+  background-color: black;
   color: white;
+}
+
+.top-nav-wrapper {
+  position: absolute; 
+  top: 0; 
+  left: 0;
+  width: 100%; 
+  height: 48px; 
+  z-index: 1;
 }
