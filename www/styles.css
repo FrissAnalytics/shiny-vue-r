@@ -31,29 +31,3 @@
   font-size: 4rem !important;
   color: white;
 }
-
-.movie-poster {
-  position: relative;
-  color: white;
-  background-color: none;
-}
-
-.movie-poster:hover{
-  background-color: rgb(76, 0, 255);
-  cursor: pointer;
-}
-
-.movie-poster .movie-index{
-  position: absolute;
-  top: 4px;
-  left: 4px;
-  color: white;
-  width: 13px;
-  height: 13px;
-  font-size: 8px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background-color: rgb(76, 0, 255);
-  opacity: 0;
-}

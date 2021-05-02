@@ -1,14 +1,8 @@
-
-import SearchBox from "/components/SearchBox.js";
-
-import Popular from "/components/Popular.js";
-
 export default Vue.component("Home", {
 
     components: {
-        SearchBox,
-        Popular,
-        'app-world': window.httpVueLoader('components/AppWorld.vue')
+        "search-box": httpVueLoader('components/SearchBox.vue'),
+        "popular": httpVueLoader('components/Popular.vue')
     },
 
     data() {
@@ -97,11 +91,9 @@ export default Vue.component("Home", {
           
           <div class="app-title text-center text-uppercase">Movie <span class="orange--text">Vue</span> <span>R</span></div>
     
-          <SearchBox style="width: 600px" class="mx-auto"/> 
+          <search-box style="width: 600px" class="mx-auto"/> 
 
-          <app-world></app-world>
-
-          <Popular />
+          <popular />
         
         </v-container>
 
