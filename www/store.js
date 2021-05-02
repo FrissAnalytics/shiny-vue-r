@@ -1,14 +1,23 @@
 export default new Vuex.Store({
 
     state: {
-        suggestions: []
+        count: 10,
+        suggestions: [],
+        popular: [],
     },
 
     mutations: {
 
+        setPopular(state, value) {
+            state.popular = value;
+        },
+
         setSuggestions(state, value) {
-            console.log(value)
             state.suggestions = value;
+        },
+
+        setShiny() {
+            Shiny.setInputValue('vue', Math.random());
         }
     }
 })

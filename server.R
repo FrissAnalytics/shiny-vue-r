@@ -12,6 +12,8 @@ function(input, output, session) {
 
   })
   
+  rVuex("setPopular", df_popular %>%toJSON) 
+  
   
  observeEvent(input$search, {
 
