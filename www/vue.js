@@ -23,7 +23,14 @@ $(document).on("shiny:connected", function (event) {
 
         components: {
             "top-nav": httpVueLoader("components/TopNav.vue"),
+            "html-widget": httpVueLoader("components/HtmlWidget.vue")
         },
+
+        computed: {
+            leaflet_x() {
+                return this.$store.state.leaflet_x
+            },
+        }
     });
 
     const rBus = function (message) {

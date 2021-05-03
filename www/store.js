@@ -4,7 +4,9 @@ export default new Vuex.Store({
         count: 10,
         suggestions: [],
         popular: [],
-        movie: null
+        movie: null,
+
+        leaflet_x: null
     },
 
     mutations: {
@@ -19,6 +21,10 @@ export default new Vuex.Store({
 
         setMovie(state, value) {
             state.movie = value;
+        },
+
+        setLeafletx(state, value) {
+            state.leaflet_x = JSON.parse(value).x;
         }
     }
 })

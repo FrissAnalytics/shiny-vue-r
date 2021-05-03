@@ -13,6 +13,9 @@
   <!-- custom styles -->
   <link href="styles.css" rel="stylesheet">
 
+  <!-- htmlwidgets -->
+  <script src="htmlwidgets.js"></script>
+
   <!-- event bus -->
   <script src="https://unpkg.com/mitt/dist/mitt.umd.js"></script>
 
@@ -65,6 +68,12 @@
           <keep-alive>
             <router-view></router-view>
           </keep-alive>
+
+          <!-- will run into brackets issue but add a widget to test -->
+          <html-widget :x="leaflet_x" name="leaflet">
+            {{ leaflet_widget }}
+            <!-- we could define the div <div id="leaf1" aria-live="polite" class="leaflet html-widget html-widget-output shiny-bound-output" style="width: 100%; height: 400px;"></div>-->
+          </html-widget>
 
         </v-container>
 

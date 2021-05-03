@@ -24,6 +24,19 @@ function(input, output, session) {
   
   rVuex("setPopular", df_popular %>%toJSON) 
   
+
+  ###  leaflet widget example
+  # helper function to extract x from a widget
+  get_widget_data <- function(widget) { htmltools::as.tags(widget)[[2]]$children[[1]] }
+  # functions from leaflet example
+  rand_lng <- function(n = 10) rnorm(n, -93.65, .01)
+  rand_lat <- function(n = 10) rnorm(n, 42.0285, .01)
+  # quick leaflet widget
+  p <- leaflet() %>% 
+    addTiles() %>% 
+    addCircles(rand_lng(50), rand_lat(50), radius = runif(50, 50, 150))
+  # update store with leaflet data and options
+  rVuex("setLeafletx", get_widget_data(p))
   
  observeEvent(input$search, {
 
