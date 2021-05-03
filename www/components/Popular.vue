@@ -32,6 +32,11 @@ module.exports = {
     showMovieDetails(movie) {
       this.$store.commit("setMovie", movie);
       this.$router.push("/movie-detail");
+
+      this.$bus.emit("shiny-data-store", {
+        type: "movie-details",
+        id: movie.id,
+      });
     },
   },
 };

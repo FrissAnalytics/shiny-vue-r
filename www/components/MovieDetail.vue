@@ -19,9 +19,11 @@
       </div>
 
       <div style="width: 60%" class="mx-auto">
-        <p class="text-body-2">
-          {{ movie.overview }}
-        </p>
+        <p class="text-body-2" v-html="movie.overview"></p>
+      </div>
+
+      <div>
+        <movie-cast :items="cast"></movie-cast>
       </div>
     </div>
   </v-card>
@@ -30,6 +32,10 @@
 <script>
 module.exports = {
   name: "movie-detail",
+
+  components: {
+    "movie-cast": httpVueLoader("components/MovieCast.vue"),
+  },
 
   computed: {
     movie() {
@@ -48,6 +54,12 @@ module.exports = {
         this.movie.poster_path
       );
     },
+
+    cast() {
+      return this.$store.state.movieDetails
+        ? this.$store.state.movieDetails.credits.cast
+        : [];
+    },
   },
 };
 </script>
@@ -56,6 +68,7 @@ module.exports = {
 .card {
   margin-top: 48px;
   height: calc(100vh - 48px);
+  overflow: hidden;
 }
 
 .backdrop {

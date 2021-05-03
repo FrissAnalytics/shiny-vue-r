@@ -10,6 +10,8 @@ module.exports = {
     // "": httpVueLoader("components/"),
   },
 
+  props: ["items"],
+
   data() {
     return {};
   },

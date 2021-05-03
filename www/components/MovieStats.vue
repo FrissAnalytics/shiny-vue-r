@@ -1,11 +1,29 @@
 <template>
   <v-card flat tile color="black" class="card">
     <v-container>
-         <div class="mt-3">
-              <shiny-plot-output id="plot1">
+
+        <!-- shiny server module 1 -->
+        <div class="mt-3">
+              <v-btn x-small @click="$bus.emit('shiny-update','server1-var1')">server 1 plot 1</v-btn>
+              <shiny-plot-output id="server1-plot1" height="160px">
         </div>
-         <div class="mt-3">
-              <shiny-plot-output id="plot2">
+
+        <div class="mt-3">
+              <v-btn x-small @click="$bus.emit('shiny-update','server1-var2')">server 1 plot 2</v-btn>
+              <shiny-plot-output id="server1-plot2" height="160px">
+        </div>
+
+        <v-divider class="my-8 cyan accent-2"></v-divider>
+
+        <!-- shiny server module 2 -->
+        <div class="mt-3">
+              <v-btn x-small @click="$bus.emit('shiny-update','server2-var1')">server 2 plot 1</v-btn>
+              <shiny-plot-output id="server2-plot1" height="160px">
+        </div>
+
+        <div class="mt-3">
+              <v-btn x-small @click="$bus.emit('shiny-update','server2-var2')">server 2 plot 2</v-btn>
+              <shiny-plot-output id="server2-plot2" height="160px">
         </div>
     </v-container>
   </v-card>

@@ -42,3 +42,54 @@ topics <- imdb_movies %>%
   tally() %>%
   arrange(desc(n)) %>%
   head(5000)
+
+
+# movie_videos(api_key = api_key, id = 578, language = "en", append_to_response = "credits")
+# movie_similar(api_key = api_key, id = 578, language = "de", append_to_response = "credits")
+# movie_reviews(api_key, id = 578, page = 2, language = "en", append_to_response = "credits")
+# movie_images(api_key = api_key, id = 550, language = "en")
+# movie_keywords(api_key, id = 550)
+# person_combined_credits(api_key = api_key, id = 287)
+# person_external_ids(api_key = api_key, id = 287)
+# person_images(api_key = api_key, id = 287)
+# person_latest(api_key = api_key)
+# person_movie_credits(api_key = api_key, id = 287)
+
+# # movies by genre
+# x1 <- keyword_movies(api_key, 1721, page = 1, language = "en")
+# 
+# # now playing
+# x5 <- movie_now_playing(api_key, page = 1, language = "en")
+# 
+# movie_releases(api_key = api_key, id = 578, append_to_response = "credits")
+#
+# movie_top_rated(api_key = api_key, page = 1, language = "en")
+# 
+# movie_upcoming(api_key, page = 1, language = "en")
+# 
+# search_movie(api_key = api_key, query = "star wars")
+# 
+# person_popular(api_key, page = 1)
+# 
+# person_tagged_images(api_key = api_key, id = 287)
+# 
+# person_tmdb(api_key = api_key, id = 287, append_to_response = "latest")
+# 
+# search_keyword(api_key = api_key, query = "furious")
+# 
+# search_multi(api_key = api_key, query = "star wars")
+# 
+# search_person(api_key = api_key, query = "Megan Fox")
+# 
+# # breaking bad
+# tv(api_key = api_key, id = 1396)
+# 
+# tv_episode(api_key = api_key, id = 1396, season_number = 4, episode_number = 4)
+# 
+# tv_episode_images(api_key = api_key, id = 1396, season_number = 1, episode_number = 1)
+# 
+# tv_episode_videos(api_key = api_key, id = 62161, season_number = 1, episode_number = 2)
+# 
+# tv_images(api_key = api_key, id = 1396)
+# 
+# tv_keywords(api_key = api_key, id = 1396)

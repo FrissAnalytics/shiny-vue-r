@@ -1,10 +1,10 @@
 export default new Vuex.Store({
 
     state: {
-        count: 10,
         suggestions: [],
         popular: [],
-        movie: null
+        movie: null,
+        movieDetails: null
     },
 
     mutations: {
@@ -19,6 +19,12 @@ export default new Vuex.Store({
 
         setMovie(state, value) {
             state.movie = value;
-        }
+        },
+
+        movieDetails(state, value) {
+            console.log("movie-details", value)
+            state.movieDetails = value;
+        },
+
     }
 })
