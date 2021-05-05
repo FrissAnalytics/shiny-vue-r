@@ -6,6 +6,8 @@ library(shadowtext)
 library(plotly)
 library(TMDb)
 library(curl)
+library(leaflet)
+library(htmltools)
 
 source("helpers.R")
 

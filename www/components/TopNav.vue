@@ -14,6 +14,10 @@
       <v-icon small>mdi-alpha-r-box</v-icon>
     </v-btn>
 
+    <v-btn small icon to="/geo-map" class="ml-2">
+      <v-icon small>mdi-map-marker </v-icon>
+    </v-btn>
+
     <v-btn small icon to="/narrative" class="ml-2">
       <v-icon small>mdi-information</v-icon>
     </v-btn>
