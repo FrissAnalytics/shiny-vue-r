@@ -14,6 +14,8 @@ function(input, output, session) {
   
   rVuex("setPopular", df_popular %>%toJSON) 
   
+  rVuex("setCovid", hopkins %>%toJSON) 
+  
   observeEvent(input$search, {
   
     req(input$search$value)
@@ -25,34 +27,4 @@ function(input, output, session) {
     rVuex("setSuggestions", result %>% head(200) %>% toJSON)
   })
 
-  
-  get_widget_data <- function(widget) { htmltools::as.tags(widget)[[2]]$children[[1]] }
- 
-  rand_lng <- function(n = 10) rnorm(n, -93.65, .01)
-  
-  rand_lat <- function(n = 10) rnorm(n, 42.0285, .01)
- 
-  p <- leaflet() %>% 
-    addTiles() %>% 
-    addCircles(rand_lng(50), rand_lat(50), radius = runif(50, 50, 150))
-  
-  
-  session$sendCustomMessage(
-    "setShinyInput",
-    list(input = "leafsettings", value = get_widget_data(p))
-  )
-  
-  session$sendCustomMessage(
-    "setShinyInput",
-    list(input = "leaf2settings", value = get_widget_data(p))
-  )
-  
-  observe({
-    invalidateLater(1000, session)
-    leafletProxy("leaf2") %>%
-      clearShapes() %>%
-      addCircles(rand_lng(50), rand_lat(50), radius = runif(50, 50, 150))
-  })
-  
-  
 }

@@ -4,7 +4,8 @@ export default new Vuex.Store({
         suggestions: [],
         popular: [],
         movie: null,
-        movieDetails: null
+        movieDetails: null,
+        covid: []
     },
 
     mutations: {
@@ -22,9 +23,11 @@ export default new Vuex.Store({
         },
 
         movieDetails(state, value) {
-            console.log("movie-details", value)
             state.movieDetails = value;
         },
 
+        setCovid(state, value) {
+            state.covid = value;
+        }
     }
 })
