@@ -1,35 +1,116 @@
 <template>
-  <div id="globeViz"></div>
+  <div id="globe-panel">
+    <!-- globe -->
+    <div id="globe"></div>
+
+    <!-- globe controls right hand side-->
+    <globe-controls
+      id="globe-controls"
+      @zoom-in="zoomIn"
+      @zoom-out="zoomOut"
+      @rotate="rotate"
+    ></globe-controls>
+
+    <!-- globe controls bottom panel -->
+    <globe-bottom-nav id="globe-bottom-nav" />
+  </div>
 </template>
 
 <script>
 module.exports = {
   name: "globe",
 
+  components: {
+    "globe-bottom-nav": httpVueLoader("components/GlobeBottomNav.vue"),
+    "globe-controls": httpVueLoader("components/GlobeControls.vue"),
+  },
+
   mounted() {
-    const transparent = "rgba(255,255,255,0)";
-
-    this.el = document.getElementById("globeViz");
-
-    const globe = Globe()
-      .globeImageUrl("//unpkg.com/three-globe/example/img/earth-night.jpg")
-      .backgroundColor(transparent)
-      .showAtmosphere(false)
-      .pointAltitude("size")
-      .pointColor("color");
-
-    this.globe = globe(this.el);
+    this.createGlobe();
 
     this.setGlobeEventHandlers();
+
+    this.setEventBusHandlers();
+  },
+
+  data() {
+    return {
+      rotating: false,
+    };
   },
 
   computed: {
     covid() {
       return this.$store.state.covid;
     },
+
+    airports() {
+      return this.$store.getters.airports;
+    },
+
+    geoData() {
+      return this.$store.state.countries.features.map((d) => ({
+        geometry: {
+          type: d.geometry.type,
+          coordinates: d.geometry.coordinates,
+        },
+        centroid: this.get_polygon_centroid(d),
+        name: d.properties.NAME,
+      }));
+    },
   },
 
   methods: {
+    createGlobe() {
+      const transparent = "rgba(255,255,255,0)";
+
+      this.el = document.getElementById("globe");
+
+      const globe = Globe()
+        .globeImageUrl("//unpkg.com/three-globe/example/img/earth-night.jpg")
+        .backgroundColor(transparent)
+        .showAtmosphere(false)
+        .pointAltitude("size")
+        .pointColor("color");
+
+      this.globe = globe(this.el);
+
+      this.globe.controls().autoRotateSpeed = 0.8;
+    },
+
+    clear() {
+      const pointsData = [];
+      const labelsData = [];
+      this.setPointsData(pointsData);
+      this.setLabelsData(labelsData);
+    },
+
+    setEventBusHandlers() {
+      this.$bus.on("globe-show-airports", this.showAirports);
+      this.$bus.on("globe-hide-airports", this.hideAirports);
+      this.$bus.on("globe-clear-data", this.clear);
+      this.$bus.on("globe-series-update", this.seriesUpdate);
+    },
+
+    seriesUpdate(val) {
+      const option = [
+        { series: "Active", color: "#FFB300", cutoff: 21962 },
+        { series: "Deaths", color: "rgba(255,23,68,0.95)", cutoff: 2953 },
+        { series: "Confirmed", color: "#00E5FF", cutoff: 125347 },
+        { series: "Recovered", color: "#76FF03", cutoff: 62346 },
+      ].find((d) => d.series == val);
+
+      const { series, color, cutoff } = option;
+
+      this.setMarkers(series, color, cutoff);
+    },
+
+    showAirports() {
+      const pointsData = [...this.airports];
+
+      this.setPointsData(pointsData, 4);
+    },
+
     setPointsData(pointsData, pointResolution = 30) {
       this.globe
         .pointsData(pointsData)
@@ -41,7 +122,7 @@ module.exports = {
         .pointResolution(pointResolution);
     },
 
-    setLabelsData(labelsData) {
+    setLabelsData(labelsData, labelColor) {
       this.globe
         .labelsData(labelsData)
         .labelLat((d) => d.labelLat)
@@ -50,13 +131,60 @@ module.exports = {
         .labelAltitude((d) => d.labelAltitude)
         .labelSize((d) => d.labelSize)
         .labelDotRadius((d) => d.labelDotRadius)
-        .labelColor((d) => d.labelColor)
+        .labelColor((d) => (labelColor ? labelColor : d.labelColor))
         .labelIncludeDot((d) => d.labelIncludeDot)
         .labelResolution(2);
     },
 
-    getHopkinsDaily() {
-      const max = d3.max(this.covid.map((d) => +d.Deaths));
+    get_polygon_centroid(d) {
+      let coordinates = [0, 0];
+
+      if (d.geometry.type == "Polygon") {
+        coordinates = d.geometry.coordinates[0];
+      }
+
+      // find largest polygon
+      if (d.geometry.type == "MultiPolygon") {
+        let area_max = -1;
+
+        d.geometry.coordinates.forEach((d) => {
+          const area = d3.polygonArea(d[0]);
+
+          if (area > area_max) {
+            area_max = area;
+            coordinates = d[0];
+          }
+        });
+      }
+
+      return d3.polygonCentroid(coordinates);
+    },
+
+    setPolygonsData(polygonsData) {
+      console.log("setPolygonsData", polygonsData);
+
+      this.globe
+        .polygonsData(polygonsData)
+        .polygonAltitude(0.005)
+        .polygonCapColor(() => "rgba(33,150,243,0.01)")
+        .polygonSideColor(() => "rgba(0,188,212, 0.015)")
+        .polygonsTransitionDuration(0)
+        .polygonStrokeColor(() => "rgba(101, 31, 255,0.4)")
+        .onPolygonHover((hoverD) =>
+          this.globe.polygonStrokeColor((d) =>
+            d === hoverD ? "#FFC107" : "rgba(101, 31, 255,0.4))"
+          )
+        )
+        .onPolygonClick((d) => {
+          this.globe.pointOfView(
+            { lat: d.centroid[1], lng: d.centroid[0], altitude: 0.75 },
+            750
+          );
+        });
+    },
+
+    covidMarkers(type, color) {
+      const max = d3.max(this.covid.map((d) => +d[type]));
 
       const s = d3
         .scalePow()
@@ -64,26 +192,27 @@ module.exports = {
         .domain([0, max])
         .range([0, 1.5]);
 
-      const pointsDataDaily = this.covid
-        .filter((d) => d.Deaths > 0)
+      const markers = this.covid
+        .filter((d) => d[type] > 0)
         .map((d) => ({
           pointLat: +d.Lat,
           pointLng: +d.Long_,
-          pointRadius: s(d.Deaths),
-          pointColor: "rgba(255,23,68,0.95)",
+          pointRadius: s(d[type]),
+          pointColor: color,
           pointAltitude: 0.01,
-          value: +d.Deaths,
+          value: +d[type],
         }));
 
-      return pointsDataDaily;
+      return markers;
     },
 
-    setMarkers() {
-      const pointsDataDaily = this.getHopkinsDaily();
-      const pointsData = [...pointsDataDaily];
+    setMarkers(type = "Deaths", color = "rgba(255,23,68,0.95)", cutoff = 3000) {
+      const markers = this.covidMarkers(type, color);
 
-      const labels = pointsDataDaily
-        .filter((d) => +d.value > 3000)
+      const pointsData = [...markers];
+
+      const labels = markers
+        .filter((d) => +d.value > cutoff)
         .map((d) => ({
           labelAltitude: 0.011,
           labelSize: 0.25,
@@ -97,14 +226,14 @@ module.exports = {
 
       const labelsData = [...labels];
 
-      this.setLabelsData(labelsData);
+      this.setLabelsData(labelsData, "grey");
 
       this.setPointsData(pointsData);
     },
 
     setGlobeEventHandlers() {
       // background click (not globe)
-      d3.select("#globeViz").on("dblclick", () => this.resetView());
+      d3.select("#globe").on("dblclick", () => this.resetView());
 
       // globe right click
       this.globe.onGlobeRightClick(this.logCameraPosition);
@@ -170,6 +299,12 @@ module.exports = {
     resumeAnimation() {
       this.globe.resumeAnimation();
     },
+
+    rotate() {
+      this.rotating = !this.rotating;
+
+      this.globe.controls().autoRotate = this.rotating;
+    },
   },
 
   watch: {
@@ -182,21 +317,53 @@ module.exports = {
         }
       },
     },
+
+    geoData: {
+      immediate: true,
+      handler(val) {
+        setTimeout((d) => this.setPolygonsData(val), 100);
+      },
+    },
   },
 };
 </script>
 
 <style scoped>
 #globeViz {
-  position: relative;
-  opacity: 1;
+  z-index: 1;
+}
+
+#globe-panel {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100vh;
+  width: 100vw;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
   background: rgb(45, 37, 37);
   background: radial-gradient(
     circle,
     rgba(20, 37, 37, 1) 0%,
     rgba(12, 13, 13, 1) 67%
   );
-  margin: 0;
-  padding: 0;
+}
+
+#globe-controls {
+  position: absolute;
+  right: 20px;
+  z-index: 2;
+  background-color: rgb(49, 46, 46);
+  top: 50%;
+  transform: translate(0, -50%);
+}
+
+#globe-bottom-nav {
+  position: absolute;
+  width: 100%;
+  bottom: 0px;
+  left: 0px;
+  z-index: 2;
 }
 </style>

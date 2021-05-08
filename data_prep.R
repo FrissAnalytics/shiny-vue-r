@@ -10,7 +10,14 @@ save(imdb_ratings, file = "data/imdb_ratings.RData")
 save(imdb_principals, file = "data/imdb_principals.RData")
 
 
-#
+# airports
+airports        <- read_csv("https://raw.githubusercontent.com/jpatokal/openflights/master/data/airports.dat", col_names = FALSE)
+airports        <- airports[,c(2,3,4,5,7,8,9)]
+names(airports) <- c("name", "city", "country", "IATA", "lat","lng","altitude")
+
+save(airports, file = "data/airports.RData")
+
+
 library(tidytext)
 
 movies               <- imdb_movies$original_title %>% unique %>% sort

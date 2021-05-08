@@ -1,21 +1,17 @@
 function(input, output, session) {
   
  source("r2Vue.R" , local = TRUE)
+ 
+  # initial vuex data
+  rVuex("setPopular", df_popular) 
   
-  observeEvent(input$data_store, {
-
-    rVuex("movieDetails", get_movie_details(input$data_store$id) %>% toJSON)
-    
-  })
+  rVuex("setCovid", hopkins) 
   
-  plotServer("server1")
+  rVuex("setCountries", countries )
   
-  plotServer("server2")
+  rVuex("setAirports", airports )
   
-  rVuex("setPopular", df_popular %>%toJSON) 
-  
-  rVuex("setCovid", hopkins %>%toJSON) 
-  
+  # auto-completion example
   observeEvent(input$search, {
   
     req(input$search$value)
@@ -24,7 +20,21 @@ function(input, output, session) {
   
     result <- imdb_movies[m, ] %>% arrange( desc(avg_vote) )
   
-    rVuex("setSuggestions", result %>% head(200) %>% toJSON)
+    rVuex("setSuggestions", result %>% head(200))
   })
+  
+  # R as a data broker example
+  observeEvent(input$data_store, {
+    
+    details <- get_movie_details(input$data_store$id)
+    
+    rVuex("movieDetails", details)
+    
+  })
+  
+  # ggplot moduleServer example
+  plotServer("server1")
+  
+  plotServer("server2")
 
 }

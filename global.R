@@ -2,19 +2,18 @@ library(shiny)
 library(jsonlite)
 library(tidyverse)
 library(magrittr)
-library(shadowtext)
 library(plotly)
 library(TMDb)
 library(curl)
 library(leaflet)
 library(htmltools)
 
-
 source("helpers.R")
 
 source("modules/plotServer.R")
 
 load("data/imdb_movies.RData")
+load("data/airports.RData")
 
 api_key    <- "1832c46bf5ad73f96183eaddb5f8ab88"
 
@@ -26,3 +25,4 @@ hopkins    <- read_csv("https://raw.githubusercontent.com/CSSEGISandData/COVID-1
 
 hopkins    <- hopkins %>% drop_na(Lat, Long_)
 
+countries  <- fromJSON("data/ne_110m_admin_0_countries.json")
