@@ -1,29 +1,3 @@
-/* custom scrollbar */
-:root {
-  --scrollbar-bg:  #000000;
-  --scrollbar-thumb: #4c00ff;
-}
-
-* {
-  scrollbar-width: thin;
-  scrollbar-color: var(--scrollbar-thumb) var(--scrollbar-bg);
-}
-
-*::-webkit-scrollbar {
-  width: 10px;
-}
-
-*::-webkit-scrollbar-track {
-  background: var(--scrollbar-bg);
-  ;
-}
-
-*::-webkit-scrollbar-thumb {
-  background-color: var(--scrollbar-thumb);
-  border-radius: 8px;
-  border: 2px solid var(--scrollbar-bg);
-}
-
 body {
   background-color: black;
   color: white;

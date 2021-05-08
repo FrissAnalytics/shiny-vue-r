@@ -37,19 +37,4 @@ $(document).on("shiny:connected", function (event) {
     Shiny.addCustomMessageHandler("r2vue", rBus);
 
     Shiny.addCustomMessageHandler("r2vuex", rVuex);
-
-    Shiny.shinyapp.$inputValues.leafsettings = null
-    Shiny.shinyapp.$inputValues.leaf2settings = null
-
-    Shiny.addCustomMessageHandler("setShinyInput", function (message) {
-        Shiny.setInputValue(message.input, JSON.parse(message.value).x);
-
-        var evt = jQuery.Event("shiny:inputchanged");
-        evt.name = message.input;
-        evt.value = message.value;
-        evt.binding = null;
-        evt.el = null;
-        evt.inputType = null;
-        $(document).trigger(evt);
-    });
 });

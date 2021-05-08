@@ -1,12 +1,14 @@
 <template>
-  <div class="poster-grid d-flex flex-wrap">
-    <div v-for="(movie, index) in popular" :key="movie.id">
-      <div
-        class="ma-1 pa-1 poster d-flex justify-center align-center"
-        @click="showMovieDetails(movie)"
-      >
-        <img loading="lazy" :src="getPosterUrl(movie)" />
-        <div class="poster-index">{{ index + 1 }}</div>
+  <div id="poster-grid">
+    <div class="d-flex flex-wrap">
+      <div v-for="(movie, index) in popular" :key="movie.id">
+        <div
+          class="ma-1 pa-1 poster d-flex justify-center align-center"
+          @click="showMovieDetails(movie)"
+        >
+          <img loading="lazy" :src="getPosterUrl(movie)" />
+          <div class="poster-index">{{ index + 1 }}</div>
+        </div>
       </div>
     </div>
   </div>
@@ -20,6 +22,12 @@ module.exports = {
     popular() {
       return this.$store.state.popular;
     },
+  },
+
+  mounted() {
+    OverlayScrollbars(document.querySelector("#poster-grid"), {
+      className: "os-theme-round-light",
+    });
   },
 
   methods: {
@@ -43,14 +51,18 @@ module.exports = {
 </script>
 
 <style scoped>
-.poster-grid {
+#poster-grid {
+  width: 100%;
+
   --row-count: 2;
   --poster-height: 141px;
   --poster-padding: 16px;
   height: calc(
     var(--row-count) * (var(--poster-height) + var(--poster-padding))
   );
-  overflow-y: scroll;
+
+  box-sizing: border-box;
+  z-index: 100;
 }
 
 .poster {
