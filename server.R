@@ -2,14 +2,16 @@ function(input, output, session) {
   
  source("r2Vue.R" , local = TRUE)
  
-  # initial vuex data
-  rVuex("setPopular", df_popular) 
+  # init vuex data
+  rVuexSetState("popular", df_popular) 
   
-  rVuex("setCovid", hopkins) 
+  rVuexSetState("covid", hopkins) 
   
-  rVuex("setCountries", countries )
+  rVuexSetState("countries", countries )
   
-  rVuex("setAirports", airports )
+  rVuexSetState("airports", airports )
+  
+  rVuexSetState("total", am_data$total)
   
   # auto-completion example
   observeEvent(input$search, {
@@ -20,7 +22,7 @@ function(input, output, session) {
   
     result <- imdb_movies[m, ] %>% arrange( desc(avg_vote) )
   
-    rVuex("setSuggestions", result %>% head(200))
+    rVuexSetState("suggestions", result %>% head(200))
   })
   
   # R as a data broker example
@@ -28,7 +30,7 @@ function(input, output, session) {
     
     details <- get_movie_details(input$data_store$id)
     
-    rVuex("movieDetails", details)
+    rVuexSetState("movieDetails", details)
     
   })
   

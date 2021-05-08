@@ -34,7 +34,15 @@ $(document).on("shiny:connected", function (event) {
         store.commit(message.mutation, message.value);
     }
 
+    const rVuexSetState = function (message) {
+        store.commit("setState", message);
+    }
+
     Shiny.addCustomMessageHandler("r2vue", rBus);
 
     Shiny.addCustomMessageHandler("r2vuex", rVuex);
+
+    Shiny.addCustomMessageHandler("rVuexSetState", rVuexSetState);
+
+
 });

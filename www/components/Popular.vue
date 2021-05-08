@@ -38,7 +38,8 @@ module.exports = {
     },
 
     showMovieDetails(movie) {
-      this.$store.commit("setMovie", movie);
+      this.$store.commit("setState", { key: "movie", value: movie });
+
       this.$router.push("/movie-detail");
 
       this.$bus.emit("shiny-data-store", {
@@ -62,7 +63,7 @@ module.exports = {
   );
 
   box-sizing: border-box;
-  z-index: 100;
+  z-index: 1;
 }
 
 .poster {

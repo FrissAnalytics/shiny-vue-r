@@ -83,3 +83,12 @@ get_movie_details <- function(id){
   return(results)
   
 }
+
+get_urls <- function(urls, keys){
+  L              <- get_urls_async2(urls)
+  results        <- L$results
+  names(results) <- keys[match(L$urls, urls)]
+  
+  return(results)
+}
+

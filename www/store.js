@@ -1,43 +1,18 @@
+import { annotations } from "./data/annotations.js";
+
 export default new Vuex.Store({
 
     state: {
-        suggestions: [],
-        popular: [],
-        movie: null,
-        movieDetails: null,
-        covid: [],
-        countries: null,
-        airports: null
+        annotations: annotations
     },
 
     mutations: {
 
-        setPopular(state, value) {
-            state.popular = value;
-        },
+        setState(state, payload) {
 
-        setSuggestions(state, value) {
-            state.suggestions = value;
-        },
+            const { key, value } = payload;
 
-        setMovie(state, value) {
-            state.movie = value;
-        },
-
-        movieDetails(state, value) {
-            state.movieDetails = value;
-        },
-
-        setCovid(state, value) {
-            state.covid = value;
-        },
-
-        setCountries(state, value) {
-            state.countries = value;
-        },
-
-        setAirports(state, value) {
-            state.airports = value;
+            Vue.set(state, key, value);
         }
     },
 

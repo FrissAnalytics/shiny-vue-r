@@ -161,8 +161,6 @@ module.exports = {
     },
 
     setPolygonsData(polygonsData) {
-      console.log("setPolygonsData", polygonsData);
-
       this.globe
         .polygonsData(polygonsData)
         .polygonAltitude(0.005)

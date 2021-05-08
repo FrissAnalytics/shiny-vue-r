@@ -1,7 +1,7 @@
 <template>
   <div>
     <div class="text-uppercase movie-app-sub-title">
-      shiny
+      shiny {{ test }}
       <v-btn icon color="#4c00ff" @click="$emit('click')">
         <v-icon>mdi-camera </v-icon>
       </v-btn>
@@ -16,6 +16,12 @@
 <script>
 module.exports = {
   name: "home-title",
+
+  computed: {
+    test() {
+      return this.$store.state.test;
+    },
+  },
 };
 </script>
 
