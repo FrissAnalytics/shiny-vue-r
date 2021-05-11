@@ -5,7 +5,7 @@ const routes = [
     { path: '/person-details', component: httpVueLoader('components/PersonDetails.vue') },
     { path: '/oscars', component: httpVueLoader('components/Oscars.vue') },
     { path: '/globe', component: httpVueLoader('components/Globe.vue') },
-    // { path: '/narrative', component: httpVueLoader('components/Narrative.vue') },
+    { path: '/narrative', component: httpVueLoader('components/Narrative.vue') },
 ]
 
 export default new VueRouter({
