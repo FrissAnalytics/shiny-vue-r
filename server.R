@@ -26,7 +26,7 @@ function(input, output, session) {
   
     result <- imdb_movies[m, ] %>% arrange( desc(avg_vote) )
   
-    rVuexSetState("suggestions", result %>% head(200))
+    rVuexSetState("suggestions", result %>% head(50))
   })
   
   # R as a data broker example
@@ -37,7 +37,7 @@ function(input, output, session) {
       
       cat("\nget movie details")
       
-      details <- get_movie_details(input$data_store$id)
+      details <- get_movie_details2(input$data_store$id)
       
       rVuexSetState("movieDetails", details)
       
@@ -50,7 +50,7 @@ function(input, output, session) {
       
       details <- get_person_details(input$data_store$id)
       
-      rVuexSetState2("personDetails", details)
+      rVuexSetState("personDetails", details)
       
     }
     

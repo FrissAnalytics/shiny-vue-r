@@ -29,6 +29,8 @@
           <p class="text-h2 font-weight-black">{{ person.name }}</p>
 
           <p class="">{{ person.biography }}</p>
+
+          <person-credits :credits="credits" />
         </v-col>
       </v-row>
     </div>
@@ -39,10 +41,20 @@
 module.exports = {
   name: "person-detail",
 
+  components: {
+    "person-credits": httpVueLoader("components/PersonCredits.vue"),
+  },
+
   computed: {
     person() {
       console.log("person details", this.$store.state.personDetails);
       return this.$store.state.personDetails;
+    },
+
+    credits() {
+      return this.person.movie_credits.cast
+        .filter((d) => d.poster_path)
+        .sort((a, b) => b.popularity - a.popularity);
     },
   },
 };

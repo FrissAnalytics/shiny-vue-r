@@ -144,6 +144,24 @@ module.exports = {
           up on that.
         </p>`,
         },
+
+        {
+          text: `<p>Books</p>
+        <p>Outstanding User Interfaces with Shiny, https://unleash-shiny.rinterface.com/index.html</p>
+
+        <p>Engineering Production-Grade Shiny Apps, https://engineering-shiny.org/index.html</p>
+
+        <p>JavaScript for R https://book.javascript-for-r.com/</p>
+
+        <p>mastering shiny https://mastering-shiny.org/</p>
+        
+        <p>https://github.com/daattali/shinyjs </p> 
+
+        <p>https://www.htmlwidgets.org/</p> 
+
+        <p>https://shiny.rstudio.com/articles/js-build-widget.html</p> 
+        `,
+        },
       ],
     };
   },

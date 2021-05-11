@@ -62,11 +62,12 @@ get_urls_async2 <- function(urls){
 get_movie_details <- function(id){
   
   urls <- c(
+    paste0("http://api.themoviedb.org/3/movie/", id, "?api_key=", api_key),
     paste0("http://api.themoviedb.org/3/movie/", id, "/credits?api_key=", api_key),
     paste0("http://api.themoviedb.org/3/movie/", id, "/videos?api_key=", api_key),       
     paste0("http://api.themoviedb.org/3/movie/", id, "/images?api_key=", api_key))
   
-  type <- c("credits","videos","images")
+  type <- c("movie","credits","videos","images")
   
   # make requests
   L <- get_urls_async2(urls)
@@ -84,12 +85,15 @@ get_movie_details <- function(id){
   
 }
 
+get_movie_details2 <- function(id){
+  TMDb::movie(api_key, id = id, append_to_response = "credits,videos,images,images")
+}
+
+
 get_person_details <- function(id){
   
   TMDb::person_tmdb(api_key, id = id, 
                     append_to_response = "movie_credits,external_ids,images,tagged_images,changes,popular,latest")
-  
-  #GET(paste0("http://api.themoviedb.org/3/person/",id,"?api_key=",api_key,"&append_to_response=external_ids,movie_credits,images")) %>% content
 }
 
 
@@ -100,6 +104,3 @@ get_urls <- function(urls, keys){
   
   return(results)
 }
-
-
-

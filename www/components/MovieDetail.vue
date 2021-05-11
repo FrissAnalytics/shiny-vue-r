@@ -1,6 +1,6 @@
 <template>
   <v-card flat tile color="black" class="card">
-    <div class="text-center">
+    <div class="text-center" v-if="movie">
       <p class="text-h2 font-weight-black">
         {{ movie.original_title }}
       </p>
@@ -39,7 +39,10 @@ module.exports = {
 
   computed: {
     movie() {
-      return this.$store.state.movie;
+      if (!this.$store.state.movieDetails) return null;
+
+      console.log("movie detail: ", this.$store.state);
+      return this.$store.state.movieDetails;
     },
 
     backdrop() {
@@ -56,9 +59,7 @@ module.exports = {
     },
 
     cast() {
-      return this.$store.state.movieDetails
-        ? this.$store.state.movieDetails.credits.cast
-        : [];
+      return this.movie ? this.movie.credits.cast : [];
     },
   },
 };
