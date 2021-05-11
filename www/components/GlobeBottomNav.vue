@@ -1,5 +1,5 @@
 <template>
-  <div :id="id" class="control-panel">
+  <div id="globe-bottom-nav" class="control-panel">
     <v-btn
       x-small
       text
@@ -126,7 +126,6 @@
 <script>
 module.exports = {
   name: "globe-bottom-nav",
-  props: ["id"],
   data() {
     return {
       sheet: true,
@@ -211,6 +210,14 @@ module.exports = {
 </script>
 
 <style scoped>
+#globe-bottom-nav {
+  position: absolute;
+  width: 100%;
+  bottom: 0px;
+  left: 0px;
+  z-index: 2;
+}
+
 .selector {
   width: 150px;
   display: inline-block;

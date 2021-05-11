@@ -3,6 +3,11 @@
     <!-- globe -->
     <div id="globe"></div>
 
+    <!-- storyline -->
+    <div id="storyline-wrapper">
+      <storyline :items="storylines" />
+    </div>
+
     <!-- globe controls right hand side-->
     <globe-controls
       id="globe-controls"
@@ -12,7 +17,7 @@
     ></globe-controls>
 
     <!-- globe controls bottom panel -->
-    <globe-bottom-nav id="globe-bottom-nav" />
+    <globe-bottom-nav />
   </div>
 </template>
 
@@ -21,6 +26,7 @@ module.exports = {
   name: "globe",
 
   components: {
+    storyline: httpVueLoader("components/Storyline.vue"),
     "globe-bottom-nav": httpVueLoader("components/GlobeBottomNav.vue"),
     "globe-controls": httpVueLoader("components/GlobeControls.vue"),
   },
@@ -40,6 +46,10 @@ module.exports = {
   },
 
   computed: {
+    storylines() {
+      return this.$store.getters.storylines;
+    },
+
     covid() {
       return this.$store.state.covid;
     },
@@ -357,11 +367,9 @@ module.exports = {
   transform: translate(0, -50%);
 }
 
-#globe-bottom-nav {
+#storyline-wrapper {
   position: absolute;
-  width: 100%;
-  bottom: 0px;
-  left: 0px;
-  z-index: 2;
+  top: 100px;
+  left: 20px;
 }
 </style>

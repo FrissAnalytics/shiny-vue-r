@@ -52,6 +52,8 @@ keys       <- c("total_timeline", "total")
 
 am_data    <- get_urls(urls, keys)
 
+storylines <- fromJSON("data/timeline.json")
+
 ###
 ### 
 ###

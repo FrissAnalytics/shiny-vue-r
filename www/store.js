@@ -4,7 +4,9 @@ export default new Vuex.Store({
 
     state: {
         annotations: annotations,
-        personDetails: null
+        personDetails: null,
+        airports: null,
+        storylines: null
     },
 
     mutations: {
@@ -18,6 +20,23 @@ export default new Vuex.Store({
     },
 
     getters: {
+
+        storylines: state => {
+
+            if (!state.storylines) return []
+
+            const items = state.storylines;
+
+            const dateParser = d3.timeParse("%m-%d-%Y");
+
+            items.forEach((d) => {
+                d.date = dateParser(d.date);
+            });
+
+            return items.reverse()
+
+        },
+
         airports: state => {
 
             const lambda = d3.scaleLinear()

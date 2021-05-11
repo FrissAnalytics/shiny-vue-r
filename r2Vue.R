@@ -8,10 +8,6 @@ rVuex <- function (mutation, value){
   session$sendCustomMessage("r2vuex", list(mutation = mutation, value = value %>% toJSON(auto_unbox = TRUE)))
 }
 
-rVuexSetState <- function (key, value){
-  session$sendCustomMessage("rVuexSetState", list(key = key, value = value %>% toJSON(auto_unbox = TRUE)))
-}
-
-rVuexSetState2 <- function (key, value){
-  session$sendCustomMessage("rVuexSetState", list(key = key, value = value))
+rVuexSetState <- function (key, value, auto_unbox = TRUE){
+  session$sendCustomMessage("rVuexSetState", list(key = key, value = value %>% toJSON(auto_unbox = auto_unbox)))
 }

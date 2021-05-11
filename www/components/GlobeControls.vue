@@ -19,23 +19,8 @@ module.exports = {
   name: "globe-controls",
 
   props: ["items"],
-
-  data() {
-    return {};
-  },
-
-  mounted() {},
-
-  computed: {},
-
-  methods: {},
-
-  watch: {},
 };
 </script>
 
 <style scoped>
-.sfc-template {
-  background-color: red;
-}
 </style>

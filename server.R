@@ -17,6 +17,8 @@ function(input, output, session) {
   
   rVuexSetState("kaggle", kaggle_oscars_tmdb)
   
+  rVuexSetState("storylines", storylines, auto_unbox = FALSE)
+  
   # auto-completion example
   observeEvent(input$search, {
   
