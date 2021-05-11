@@ -1,6 +1,6 @@
 <template>
   <div class="item">
-    <v-list-item>
+    <v-list-item @click="showMovie()">
       <v-list-item-content>
         <v-list-item-title>{{ item.original_title }}</v-list-item-title>
         <v-list-item-subtitle
@@ -30,6 +30,18 @@
 module.exports = {
   name: "search-box-item",
   props: ["item"],
+  methods: {
+    showMovie() {
+      this.$store.commit("setState", { key: "movie", value: this.item });
+
+      this.$router.push("/movie-detail");
+
+      this.$bus.emit("shiny-data-store", {
+        type: "movie-details",
+        id: this.item.movie_id_tmdb,
+      });
+    },
+  },
 };
 </script>
 

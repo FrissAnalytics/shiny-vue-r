@@ -84,6 +84,15 @@ get_movie_details <- function(id){
   
 }
 
+get_person_details <- function(id){
+  
+  TMDb::person_tmdb(api_key, id = id, 
+                    append_to_response = "movie_credits,external_ids,images,tagged_images,changes,popular,latest")
+  
+  #GET(paste0("http://api.themoviedb.org/3/person/",id,"?api_key=",api_key,"&append_to_response=external_ids,movie_credits,images")) %>% content
+}
+
+
 get_urls <- function(urls, keys){
   L              <- get_urls_async2(urls)
   results        <- L$results
@@ -91,4 +100,6 @@ get_urls <- function(urls, keys){
   
   return(results)
 }
+
+
 

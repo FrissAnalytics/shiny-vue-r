@@ -13,6 +13,10 @@ function(input, output, session) {
   
   rVuexSetState("total", am_data$total)
   
+  rVuexSetState("oscars", tmdb_oscar_winners)
+  
+  rVuexSetState("kaggle", kaggle_oscars_tmdb)
+  
   # auto-completion example
   observeEvent(input$search, {
   
@@ -28,12 +32,31 @@ function(input, output, session) {
   # R as a data broker example
   observeEvent(input$data_store, {
     
-    details <- get_movie_details(input$data_store$id)
+    # movies
+    if(input$data_store$type == "movie-details"){
+      
+      cat("\nget movie details")
+      
+      details <- get_movie_details(input$data_store$id)
+      
+      rVuexSetState("movieDetails", details)
+      
+    } 
     
-    rVuexSetState("movieDetails", details)
+    # persons
+    if(input$data_store$type == "person-details"){
+      
+      cat("\nget person details")
+      
+      details <- get_person_details(input$data_store$id)
+      
+      rVuexSetState2("personDetails", details)
+      
+    }
     
   })
   
+
   # ggplot moduleServer example
   plotServer("server1")
   

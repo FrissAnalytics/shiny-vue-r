@@ -2,7 +2,7 @@
   <v-app-bar color="#24242596" dense dark>
     <v-app-bar-nav-icon @click="$router.push('/')"></v-app-bar-nav-icon>
 
-    <v-toolbar-title>movie-vue-R</v-toolbar-title>
+    <v-toolbar-title>movie-vue-r</v-toolbar-title>
 
     <v-spacer></v-spacer>
 
@@ -12,6 +12,10 @@
 
     <v-btn small icon to="/movie-stats" class="ml-2">
       <v-icon small>mdi-alpha-r-box</v-icon>
+    </v-btn>
+
+    <v-btn small icon to="/oscars" class="ml-2">
+      <v-icon small>mdi-trophy</v-icon>
     </v-btn>
 
     <v-btn small icon to="/globe" class="ml-2">

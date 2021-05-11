@@ -4,7 +4,8 @@
       v-for="item in items.filter((d, i) => i < 6 && d.profile_path)"
       :key="item.id"
       flat
-      class="ma-4 pa-2"
+      class="ma-4 pa-2 person"
+      @click="getPersonDetails(item)"
     >
       <img :src="getImg(item)" :height="175" />
       <div class="cast-name font-weight-black">{{ item.name }}</div>
@@ -27,6 +28,17 @@ module.exports = {
         item.profile_path
       );
     },
+
+    getPersonDetails(item) {
+      this.$store.commit("setState", { key: "person", value: item });
+
+      this.$router.push("/person-details");
+
+      this.$bus.emit("shiny-data-store", {
+        type: "person-details",
+        id: item.id,
+      });
+    },
   },
 };
 </script>
@@ -38,5 +50,9 @@ module.exports = {
 
 .cast-character {
   font-size: 0.8rem;
+}
+
+.person:hover {
+  cursor: pointer;
 }
 </style>

@@ -11,3 +11,7 @@ rVuex <- function (mutation, value){
 rVuexSetState <- function (key, value){
   session$sendCustomMessage("rVuexSetState", list(key = key, value = value %>% toJSON()))
 }
+
+rVuexSetState2 <- function (key, value){
+  session$sendCustomMessage("rVuexSetState", list(key = key, value = value))
+}

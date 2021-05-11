@@ -3,7 +3,8 @@ import { annotations } from "./data/annotations.js";
 export default new Vuex.Store({
 
     state: {
-        annotations: annotations
+        annotations: annotations,
+        personDetails: null
     },
 
     mutations: {
