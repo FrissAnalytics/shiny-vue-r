@@ -8,6 +8,11 @@
       <storyline :items="storylines" />
     </div>
 
+    <!-- timeline -->
+    <div id="timeline-wrapper">
+      <timeline />
+    </div>
+
     <!-- globe controls right hand side-->
     <globe-controls
       id="globe-controls"
@@ -27,6 +32,7 @@ module.exports = {
 
   components: {
     storyline: httpVueLoader("components/Storyline.vue"),
+    timeline: httpVueLoader("components/Timeline.vue"),
     "globe-bottom-nav": httpVueLoader("components/GlobeBottomNav.vue"),
     "globe-controls": httpVueLoader("components/GlobeControls.vue"),
   },
@@ -371,5 +377,15 @@ module.exports = {
   position: absolute;
   top: 100px;
   left: 20px;
+}
+
+#timeline-wrapper {
+  position: absolute;
+  width: 100%;
+  height: 150px;
+  pointer-events: none;
+  top: 80px;
+  z-index: 2;
+  color: white;
 }
 </style>

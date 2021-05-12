@@ -1,7 +1,7 @@
 <template>
   <div>
     <div id="storylines">
-      <div v-for="(item, index) in items" :key="index">
+      <div v-for="(item, index) in storylines" :key="index">
         <storyline-item :item="item" :index="index" @click="goto" />
       </div>
 
@@ -46,7 +46,7 @@ module.exports = {
     // bus
     this.$bus.on("show-storyline", (val) => (this.show = val));
 
-    this.$bus.on("timeline-click", this.timelineClick);
+    //this.$bus.on("timeline-click", this.timelineClick);
 
     // overlay scrolller
     const el = document.querySelector("#storylines");
@@ -63,6 +63,7 @@ module.exports = {
     return {
       index: 0,
       reversed: true,
+      storylines: this.items,
     };
   },
 
@@ -82,7 +83,9 @@ module.exports = {
     },
 
     findIndex(date) {
-      const index = bisect(this.dates, date);
+      // what is the closest date in dates?
+      // for more info on bisect, see https://observablehq.com/@d3/d3-bisect
+      const index = d3.bisect(this.dates, date);
 
       return index;
     },
@@ -138,8 +141,7 @@ module.exports = {
 
     reverse() {
       this.reversed = !this.reversed;
-      this.items = this.items.slice().reverse();
-      console.log("reverse", this.items[0]);
+      this.storylines = this.storylines.slice().reverse();
     },
   },
 };

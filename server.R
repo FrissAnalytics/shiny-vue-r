@@ -19,6 +19,8 @@ function(input, output, session) {
   
   rVuexSetState("storylines", storylines, auto_unbox = FALSE)
   
+  rVuexSetState("totalTimeline", am_data$total_timeline)
+  
   # auto-completion example
   observeEvent(input$search, {
   

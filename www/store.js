@@ -6,7 +6,8 @@ export default new Vuex.Store({
         annotations: annotations,
         personDetails: null,
         airports: null,
-        storylines: null
+        storylines: null,
+        totalTimeline: null
     },
 
     mutations: {
