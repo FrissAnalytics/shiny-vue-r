@@ -14,7 +14,6 @@ module.exports = {
     },
 
     totalCasesTimeline() {
-      console.log("totalTimeline", this.$store.state.totalTimeline);
       return this.$store.state.totalTimeline;
     },
   },
@@ -252,12 +251,14 @@ module.exports = {
     // see also https://vuejs.org/v2/guide/reactivity.html
     totalCasesTimeline: {
       immediate: true,
-      deep: true,
       handler(val) {
         // we use next tick to make sure the container div (#bars) exists
         // and is mounted in the DOM so d3 can get it.
         // see https://vuejsdevelopers.com/2019/01/22/vue-what-is-next-tick/
         // see https://vuejs.org/v2/api/#Vue-nextTick
+        console.log("timeline watch");
+
+        if (this.$route.path != "/globe") return;
         this.$nextTick(this.createChart);
       },
     },

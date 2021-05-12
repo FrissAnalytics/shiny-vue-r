@@ -46,7 +46,7 @@ module.exports = {
     // bus
     this.$bus.on("show-storyline", (val) => (this.show = val));
 
-    //this.$bus.on("timeline-click", this.timelineClick);
+    this.$bus.on("timeline-click", this.timelineClick);
 
     // overlay scrolller
     const el = document.querySelector("#storylines");
@@ -67,19 +67,19 @@ module.exports = {
     };
   },
 
-  methods: {
-    timelineClick(date) {
-      if (this.multi) {
-        this.gotoDate(date);
-      } else {
-        this.index = this.findIndex(date);
-      }
+  computed: {
+    dates() {
+      return this.storylines.map((d) => d.date);
     },
 
-    timelineMove(date) {
-      if (!this.multi) {
-        this.index = this.findIndex(date);
-      }
+    maxIndex() {
+      return this.items.length - 1;
+    },
+  },
+
+  methods: {
+    timelineClick(date) {
+      this.gotoDate(date);
     },
 
     findIndex(date) {
@@ -97,7 +97,9 @@ module.exports = {
     },
 
     gotoDate(date) {
-      const index = this.findIndex(date);
+      let index = this.findIndex(date);
+
+      index = index < this.maxIndex ? index : this.maxIndex;
 
       this.goto(index, 250);
     },

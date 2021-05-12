@@ -18,7 +18,7 @@
         </div>
       </div>
 
-      <div style="width: 60%" class="mx-auto">
+      <div style="width: 60%" class="mx-auto text-justify">
         <p class="text-body-2" v-html="movie.overview"></p>
       </div>
 

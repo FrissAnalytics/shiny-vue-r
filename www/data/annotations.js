@@ -59,4 +59,12 @@ export const annotations = [
         ta: "middle",
         color: "#E91E63",
     },
+
+    {
+        date: "2021-04-17",
+        text: "3 Million+ dead",
+        h: start_height,
+        ta: "middle",
+        color: "#E91E63",
+    },
 ];
