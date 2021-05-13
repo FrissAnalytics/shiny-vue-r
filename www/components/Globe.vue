@@ -21,6 +21,11 @@
       @rotate="rotate"
     ></globe-controls>
 
+    <!-- covid stats -->
+    <div id="stats-wrapper">
+      <covid-stats />
+    </div>
+
     <!-- globe controls bottom panel -->
     <globe-bottom-nav />
   </div>
@@ -33,6 +38,7 @@ module.exports = {
   components: {
     storyline: httpVueLoader("components/Storyline.vue"),
     timeline: httpVueLoader("components/Timeline.vue"),
+    "covid-stats": httpVueLoader("components/CovidStats.vue"),
     "globe-bottom-nav": httpVueLoader("components/GlobeBottomNav.vue"),
     "globe-controls": httpVueLoader("components/GlobeControls.vue"),
   },
@@ -387,5 +393,13 @@ module.exports = {
   top: 80px;
   z-index: 2;
   color: white;
+}
+
+#stats-wrapper {
+  position: absolute;
+  width: 100%;
+  height: 50px;
+  top: 0;
+  z-index: 3;
 }
 </style>

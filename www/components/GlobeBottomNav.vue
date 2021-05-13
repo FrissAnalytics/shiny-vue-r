@@ -86,26 +86,11 @@
           <v-btn
             x-small
             outlined
-            color="indigo"
-            class="mr-4 btn-wide"
-            @click="handleTimeline()"
+            color="orange"
+            class="mr-4"
+            @click="$bus.emit('show-covid-stats')"
+            >compare</v-btn
           >
-            <v-icon left v-show="showTimeline" x-small color="pink"
-              >mdi-record</v-icon
-            >timeline
-          </v-btn>
-
-          <v-btn
-            x-small
-            outlined
-            color="indigo"
-            class="mr-4 btn-wide"
-            @click="handleGlobeAnnotation()"
-          >
-            <v-icon left v-show="showGlobeAnnotation" x-small color="pink"
-              >mdi-record</v-icon
-            >annotation
-          </v-btn>
 
           <v-btn
             x-small
@@ -126,6 +111,7 @@
 <script>
 module.exports = {
   name: "globe-bottom-nav",
+
   data() {
     return {
       sheet: true,
@@ -247,7 +233,7 @@ module.exports = {
 .close-btn {
   position: absolute;
   top: 10px;
-  right: 10px;
+  right: 20px;
   z-index: 10;
 }
 

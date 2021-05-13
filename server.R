@@ -21,6 +21,10 @@ function(input, output, session) {
   
   rVuexSetState("totalTimeline", am_data$total_timeline)
   
+  rVuexSetState("world_timeline", am_data$world_timeline)
+  
+  rVuexSetState("countryCodes", df_countries)
+  
   # auto-completion example
   observeEvent(input$search, {
   
@@ -60,10 +64,24 @@ function(input, output, session) {
     
   })
   
-
-  # ggplot moduleServer example
+  # ggplot example 1: moduleServer 
   plotServer("server1")
   
   plotServer("server2")
+  
+  # ggplot example 2
+  output$covid <- renderPlot({
+    
+    options  <- input$covid_compare
+    
+    prefix   <- ifelse(options$mode == "delta", "delta_", "")
+    
+    var_name <- paste0(prefix, options$type)
+    
+    df      <- df_covid_world %>% filter( id %in% options$countries)
+    
+    ggplot(df, aes_string(x = "date", y = var_name)) + geom_line()   + facet_grid(id ~ .)
+    
+  })
 
 }

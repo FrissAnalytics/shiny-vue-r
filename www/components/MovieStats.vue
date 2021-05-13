@@ -25,6 +25,7 @@
               <v-btn x-small @click="$bus.emit('shiny-update','server2-var2')">server 2 plot 2</v-btn>
               <shiny-plot-output id="server2-plot2" height="160px">
         </div>
+
     </v-container>
   </v-card>
 </template>

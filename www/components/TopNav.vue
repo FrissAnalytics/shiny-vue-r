@@ -10,16 +10,16 @@
       <v-icon small>mdi-heart</v-icon>
     </v-btn>
 
-    <v-btn small icon to="/movie-stats" class="ml-2">
-      <v-icon small>mdi-alpha-r-box</v-icon>
-    </v-btn>
-
     <v-btn small icon to="/oscars" class="ml-2">
       <v-icon small>mdi-trophy</v-icon>
     </v-btn>
 
     <v-btn small icon to="/globe" class="ml-2">
       <v-icon small>mdi-map-marker </v-icon>
+    </v-btn>
+
+    <v-btn small icon to="/movie-stats" class="ml-2">
+      <v-icon small>mdi-alpha-r-box</v-icon>
     </v-btn>
 
     <v-btn small icon to="/narrative" class="ml-2">

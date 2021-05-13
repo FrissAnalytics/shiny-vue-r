@@ -7,7 +7,9 @@ export default new Vuex.Store({
         personDetails: null,
         airports: null,
         storylines: null,
-        totalTimeline: null
+        totalTimeline: null,
+        ids: [],
+        countryCodes: []
     },
 
     mutations: {

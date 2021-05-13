@@ -17,8 +17,6 @@
 <script>
 module.exports = {
   name: "globe-controls",
-
-  props: ["items"],
 };
 </script>
 
