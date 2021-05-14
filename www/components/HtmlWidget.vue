@@ -99,7 +99,7 @@ module.exports = {
   watch: {
     //  use watch so that we can monitor deep changes such as x.data or x.options
     x: {
-      handler: function() { this.updateWidget() },
+      handler: function() { Vue.nextTick(function(){this.updateWidget()}) },
       deep: true
     }
   }
