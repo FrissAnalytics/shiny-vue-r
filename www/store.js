@@ -9,7 +9,8 @@ export default new Vuex.Store({
         storylines: null,
         totalTimeline: null,
         ids: [],
-        countryCodes: []
+        countryCodes: [],
+        x: null
     },
 
     mutations: {
@@ -19,6 +20,12 @@ export default new Vuex.Store({
             const { key, value } = payload;
 
             Vue.set(state, key, value);
+        },
+        
+        setStateWidget(state, payload) {
+            const { key, value } = payload;
+
+            Vue.set(state, key, JSON.parse(value).x);
         }
     },
 

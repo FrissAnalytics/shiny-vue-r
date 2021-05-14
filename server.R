@@ -1,6 +1,8 @@
 function(input, output, session) {
   
- source("r2Vue.R" , local = TRUE)
+  source("r2Vue.R" , local = TRUE)
+  
+  get_widget_data <- function(widget) { htmltools::as.tags(widget)[[2]]$children[[1]] }
  
   # init vuex data
   rVuexSetState("popular", df_popular) 
@@ -82,6 +84,20 @@ function(input, output, session) {
     
     ggplot(df, aes_string(x = "date", y = var_name)) + geom_line()   + facet_grid(id ~ .)
     
+  })
+  
+  observeEvent(input$covid_compare, {
+    options  <- input$covid_compare
+
+    prefix   <- ifelse(options$mode == "delta", "delta_", "")
+
+    var_name <- paste0(prefix, options$type)
+
+    df      <- df_covid_world %>% filter( id %in% options$countries)
+
+    ggp <- ggplot(df, aes_string(x = "date", y = var_name)) + geom_line()   + facet_grid(id ~ .)
+
+    rVuexSetStateWidget("x", get_widget_data(ggplotly(ggp)))
   })
 
 }

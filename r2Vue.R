@@ -11,3 +11,7 @@ rVuex <- function (mutation, value){
 rVuexSetState <- function (key, value, auto_unbox = TRUE){
   session$sendCustomMessage("rVuexSetState", list(key = key, value = value %>% toJSON(auto_unbox = auto_unbox)))
 }
+
+rVuexSetStateWidget <- function (key, value){
+  session$sendCustomMessage("rVuexSetStateWidget", list(key = key, value = value))
+}

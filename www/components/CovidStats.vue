@@ -13,6 +13,17 @@
         <div class="ma-5">
           <shiny-plot-output id="covid" :height="height" />
         </div>
+        
+        <div class="ma-5">
+          <html-widget :x="x" name="plotly">
+            <div
+              id="covid-plotly"
+              style="width:100%; height:400px;"
+              class="plotly html-widget"
+            >
+            </div>
+          </html-widget>
+        </div>
 
         <v-divider class="my-2"></v-divider>
 
@@ -91,6 +102,7 @@ module.exports = {
 
   components: {
     "shiny-plot-output": httpVueLoader("components/ShinyPlotOutput.vue"),
+    "html-widget":  httpVueLoader("components/HtmlWidget.vue")
   },
 
   data() {
@@ -111,6 +123,10 @@ module.exports = {
     countryCodes() {
       return this.$store.state.countryCodes;
     },
+    
+    x() {
+      return this.$store.state.x;
+    }
   },
 
   methods: {
