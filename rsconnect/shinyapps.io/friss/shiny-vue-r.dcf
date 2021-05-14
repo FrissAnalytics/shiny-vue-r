@@ -1,0 +1,13 @@
+name: shiny-vue-r
+title: shiny-vue-r
+username:
+account: friss
+server: shinyapps.io
+hostUrl: https://api.shinyapps.io/v1
+appId: 4132422
+bundleId: 4599110
+url: https://friss.shinyapps.io/shiny-vue-r/
+when: 1621013225.40497
+lastSyncTime: 1621013225.40497
+asMultiple: FALSE
+asStatic: FALSE

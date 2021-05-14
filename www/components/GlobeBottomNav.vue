@@ -30,18 +30,6 @@
             >airports
           </v-btn>
 
-          <v-btn
-            x-small
-            outlined
-            color="indigo"
-            class="mr-4 btn-wide"
-            @click="handleArcs()"
-          >
-            <v-icon left v-show="showArcs" x-small color="pink"
-              >mdi-record</v-icon
-            >flights
-          </v-btn>
-
           <v-btn-toggle
             v-model="series"
             tile
@@ -54,30 +42,6 @@
             <v-btn x-small value="Deaths">Deaths</v-btn>
             <v-btn x-small value="Recovered">Recovered</v-btn>
           </v-btn-toggle>
-
-          <v-btn
-            x-small
-            outlined
-            color="indigo"
-            class="mr-4 btn-wide"
-            @click="handleCovidMarkers()"
-          >
-            <v-icon left v-show="showCovidMarkers" x-small color="pink"
-              >mdi-record</v-icon
-            >covid markers
-          </v-btn>
-
-          <v-btn
-            x-small
-            outlined
-            color="indigo"
-            class="mr-4 btn-wide"
-            @click="handleDailyMarkers()"
-          >
-            <v-icon left v-show="showDaily" x-small color="pink"
-              >mdi-record</v-icon
-            >daily markers
-          </v-btn>
 
           <v-btn x-small outlined color="indigo" class="mr-4" @click="clear()"
             >clear</v-btn
@@ -151,33 +115,6 @@ module.exports = {
       this.$bus.emit("globe-clear-data");
     },
 
-    handleView() {
-      this.$bus.emit("view-globe", this.view);
-    },
-
-    handleArcs() {
-      this.resetBtns();
-      this.showArcs = !this.showArcs;
-      this.$bus.emit(this.showArcs ? "globe-show-arcs" : "globe-hide-arcs");
-    },
-
-    handleCovidMarkers() {
-      this.resetBtns();
-      this.showCovidMarkers = !this.showCovidMarkers;
-      this.$bus.emit("globe-covid-markers");
-    },
-
-    handleDailyMarkers() {
-      this.resetBtns();
-      this.showDaily = !this.showDaily;
-      this.$bus.emit("globe-daily");
-    },
-
-    handleGlobeAnnotation() {
-      this.showGlobeAnnotation = !this.showGlobeAnnotation;
-      this.$store.commit("setShowGlobeAnnotation", this.showGlobeAnnotation);
-    },
-
     handleAirports() {
       this.resetBtns();
       this.showAirports = !this.showAirports;
@@ -185,11 +122,6 @@ module.exports = {
       this.$bus.emit(
         this.showAirports ? "globe-show-airports" : "globe-hide-airports"
       );
-    },
-
-    handleTimeline() {
-      this.showTimeline = !this.showTimeline;
-      this.$bus.emit("show-timeline-v", this.showTimeline);
     },
   },
 };

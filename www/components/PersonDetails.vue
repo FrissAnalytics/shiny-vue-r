@@ -47,7 +47,6 @@ module.exports = {
 
   computed: {
     person() {
-      console.log("person details", this.$store.state.personDetails);
       return this.$store.state.personDetails;
     },
 

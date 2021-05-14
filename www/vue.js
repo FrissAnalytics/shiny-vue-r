@@ -1,7 +1,7 @@
-import router from "/router.js"
-import store from "/store.js"
-import bus from "/bus.js"
-import i18n from "/i18n.js"
+import router from "./router.js"
+import store from "./store.js"
+import bus from "./bus.js"
+import i18n from "./i18n.js"
 
 $(document).on("shiny:connected", function (event) {
 
@@ -26,21 +26,23 @@ $(document).on("shiny:connected", function (event) {
         },
     });
 
+
+
     const rBus = function (message) {
         bus.emit("r2vue", message);
     }
+
+    Shiny.addCustomMessageHandler("r2vue", rBus);
 
     const rVuex = function (message) {
         store.commit(message.mutation, message.value);
     }
 
+    Shiny.addCustomMessageHandler("r2vuex", rVuex);
+
     const rVuexSetState = function (message) {
         store.commit("setState", message);
     }
-
-    Shiny.addCustomMessageHandler("r2vue", rBus);
-
-    Shiny.addCustomMessageHandler("r2vuex", rVuex);
 
     Shiny.addCustomMessageHandler("rVuexSetState", rVuexSetState);
 
