@@ -49,7 +49,7 @@
           </p>
 
           <div class="d-flex justify-center">
-            <img src="/img/home.png" width="100%" />
+            <img src="./img/home.png" width="100%" />
           </div>
 
           <div class="text-center orange--text">
@@ -148,7 +148,7 @@
           </p>
 
           <div class="d-flex justify-center my-5">
-            <img src="/img/video.png" height="50px" />
+            <img src="./img/video.png" height="50px" />
           </div>
 
           <div class="text-center orange--text">Why pick Vue.js?</div>
@@ -189,7 +189,7 @@
           </p>
 
           <div class="d-flex justify-center">
-            <img src="/img/vue_lego.png" width="100%" />
+            <img src="./img/vue_lego.png" width="100%" />
           </div>
 
           <p>
@@ -212,7 +212,7 @@
           </p>
 
           <div class="d-flex justify-center">
-            <img src="/img/component_tree.png" width="100%" />
+            <img src="./img/component_tree.png" width="100%" />
           </div>
 
           <p>
@@ -269,7 +269,7 @@
           </p>
 
           <div class="d-flex justify-center">
-            <img src="/img/vue-component.png" width="100%" />
+            <img src="./img/vue-component.png" width="100%" />
           </div>
 
           <p>
@@ -292,7 +292,7 @@
           </p>
 
           <div class="d-flex justify-center">
-            <img src="/img/home.png" width="100%" />
+            <img src="./img/home.png" width="100%" />
           </div>
 
           <p>
@@ -357,7 +357,7 @@
           <p>This is the home page. Suppose we click on movie card 6:</p>
 
           <div class="d-flex justify-center">
-            <img src="/img/home.png" width="100%" />
+            <img src="./img/home.png" width="100%" />
           </div>
 
           <p>
@@ -366,7 +366,7 @@
           </p>
 
           <div class="d-flex justify-center">
-            <img src="/img/movie_details.png" width="100%" />
+            <img src="./img/movie_details.png" width="100%" />
           </div>
 
           <p>
@@ -379,7 +379,7 @@
           </p>
 
           <div class="d-flex justify-center">
-            <img src="/img/person_details.png" width="100%" />
+            <img src="./img/person_details.png" width="100%" />
           </div>
 
           <p>
@@ -390,7 +390,7 @@
           <p>A click on a movie brings you to its Movie Details view.</p>
 
           <div class="d-flex justify-center">
-            <img src="/img/oscars.png" width="100%" />
+            <img src="./img/oscars.png" width="100%" />
           </div>
 
           <p>
@@ -401,7 +401,7 @@
           </p>
 
           <div class="d-flex justify-center">
-            <img src="/img/globe.png" width="100%" />
+            <img src="./img/globe.png" width="100%" />
           </div>
 
           <p>
@@ -426,7 +426,7 @@
           </p>
 
           <div class="d-flex justify-center">
-            <img src="/img/covid_comparison.png" width="100%" />
+            <img src="./img/covid_comparison.png" width="100%" />
           </div>
 
           <p>
@@ -458,7 +458,7 @@
           </p>
 
           <div class="d-flex justify-center">
-            <img src="/img/vuetify_examples.png" height="350px" />
+            <img src="./img/vuetify_examples.png" height="350px" />
           </div>
 
           <div class="text-center orange--text">
@@ -468,35 +468,35 @@
           <p>Communication between Shiny and Vue happens in various ways:</p>
 
           <div class="d-flex justify-center my-5">
-            <img src="/img/part1.png" width="100%" />
+            <img src="./img/part1.png" width="100%" />
           </div>
 
           <div class="d-flex justify-center my-5">
-            <img src="/img/part2.png" width="100%" />
+            <img src="./img/part2.png" width="100%" />
           </div>
 
           <div class="d-flex justify-center my-5">
-            <img src="/img/part3.png" width="100%" />
+            <img src="./img/part3.png" width="100%" />
           </div>
 
           <div class="d-flex justify-center my-5">
-            <img src="/img/part4.png" width="100%" />
+            <img src="./img/part4.png" width="100%" />
           </div>
 
           <div class="d-flex justify-center my-5">
-            <img src="/img/part5.png" width="100%" />
+            <img src="./img/part5.png" width="100%" />
           </div>
 
           <div class="d-flex justify-center my-5">
-            <img src="/img/part6.png" width="100%" />
+            <img src="./img/part6.png" width="100%" />
           </div>
 
           <div class="d-flex justify-center my-5">
-            <img src="/img/part7.png" width="100%" />
+            <img src="./img/part7.png" width="100%" />
           </div>
 
           <div class="d-flex justify-center my-5">
-            <img src="/img/part8.png" width="100%" />
+            <img src="./img/part8.png" width="100%" />
           </div>
 
           <div class="text-center orange--text">Closing remarks</div>

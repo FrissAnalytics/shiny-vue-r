@@ -5,9 +5,9 @@ account: friss
 server: shinyapps.io
 hostUrl: https://api.shinyapps.io/v1
 appId: 4132422
-bundleId: 4599110
+bundleId: 4599705
 url: https://friss.shinyapps.io/shiny-vue-r/
-when: 1621013225.40497
-lastSyncTime: 1621013225.40497
+when: 1621024639.19632
+lastSyncTime: 1621024639.19632
 asMultiple: FALSE
 asStatic: FALSE
