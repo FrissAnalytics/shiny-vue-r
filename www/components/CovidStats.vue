@@ -10,9 +10,9 @@
           Covid timeline comparison
         </div>
 
-        <div class="ma-5">
+        <!--div class="ma-5">
           <shiny-plot-output id="covid" :height="height" />
-        </div>
+        </div-->
         
         <div class="ma-5">
           <html-widget :x="x" name="plotly">

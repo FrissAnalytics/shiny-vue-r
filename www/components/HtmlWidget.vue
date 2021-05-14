@@ -92,14 +92,14 @@ module.exports = {
   // updated not working since does not watch deep
   //   but if the expectation is that data and options are replaced completely
   //   then updated will trigger
-  updated: function() {
+  /*updated: function() {
     this.updateWidget()
-  },
+  },*/
 
   watch: {
     //  use watch so that we can monitor deep changes such as x.data or x.options
     x: {
-      handler: function() { Vue.nextTick(function(){this.updateWidget()}) },
+      handler: function() { this.updateWidget() },
       deep: true
     }
   }

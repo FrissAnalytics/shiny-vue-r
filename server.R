@@ -71,20 +71,20 @@ function(input, output, session) {
   
   plotServer("server2")
   
-  # ggplot example 2
-  output$covid <- renderPlot({
-    
-    options  <- input$covid_compare
-    
-    prefix   <- ifelse(options$mode == "delta", "delta_", "")
-    
-    var_name <- paste0(prefix, options$type)
-    
-    df      <- df_covid_world %>% filter( id %in% options$countries)
-    
-    ggplot(df, aes_string(x = "date", y = var_name)) + geom_line()   + facet_grid(id ~ .)
-    
-  })
+  # # ggplot example 2
+  # output$covid <- renderPlot({
+  #   
+  #   options  <- input$covid_compare
+  #   
+  #   prefix   <- ifelse(options$mode == "delta", "delta_", "")
+  #   
+  #   var_name <- paste0(prefix, options$type)
+  #   
+  #   df      <- df_covid_world %>% filter( id %in% options$countries)
+  #   
+  #   ggplot(df, aes_string(x = "date", y = var_name)) + geom_line()   + facet_grid(id ~ .)
+  #   
+  # })
   
   observeEvent(input$covid_compare, {
     options  <- input$covid_compare
@@ -96,8 +96,11 @@ function(input, output, session) {
     df      <- df_covid_world %>% filter( id %in% options$countries)
 
     ggp <- ggplot(df, aes_string(x = "date", y = var_name)) + geom_line()   + facet_grid(id ~ .)
+    
+    ggpl <- ggplotly(ggp)
+    ggpl$width <- "100%"
 
-    rVuexSetStateWidget("x", get_widget_data(ggplotly(ggp)))
+    rVuexSetStateWidget("x", get_widget_data(ggpl))
   })
 
 }
